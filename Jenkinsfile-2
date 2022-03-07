@@ -1,0 +1,11 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Hello') {
+      steps {
+          sh 'sudo apko build nginx.yaml darinpope/jenkins-example-apko:latest output.tar'
+      }
+    }
+  }
+}
