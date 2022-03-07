@@ -5,6 +5,7 @@ pipeline {
     stage('Hello') {
       steps {
           sh 'apko version'
+          sh 'apko --help'
       }
     }
   }
