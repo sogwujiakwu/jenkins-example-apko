@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+  environment {
+    DH_CREDS=credentials('dh-creds')
+  }
+  stages {
+    stage('login') {
+      steps {
+        sh 'echo $DH_CREDS_PSW | sudo docker login --username=$DH_CREDS_USR --password-stdin'
+      }
+    }
+    stage('Hello') {
+      steps {
+        sh 'sudo apko publish nginx-rootless.yaml darinpope/jenkins-example-apko:latest'
+      }
+    }
+  }
+  post {
+    always {
+      sh 'sudo docker logout'
+    }
+  }
+}
