@@ -1,15 +1,17 @@
 pipeline {
   //agent any
   agent {
-      docker {
-          image 'cgr.dev/chainguard/apko'
-          // Run the container on the node specified at the
-          // top-level of the Pipeline, in the same workspace,
-          // rather than on a new node entirely:
-          reuseNode true
-          args '--entrypoint='
-      }
-   }   
+         { label 'my-defined-label'
+            docker {
+                image 'cgr.dev/chainguard/apko'
+                // Run the container on the node specified at the
+                // top-level of the Pipeline, in the same workspace,
+                // rather than on a new node entirely:
+                reuseNode true
+                args '--entrypoint='
+            }
+        }   
+   }
   stages {
     stage('Hello') {
       steps {
