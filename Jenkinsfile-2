@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('Hello') {
       steps {
-          sh 'sudo apko build nginx.yaml darinpope/jenkins-example-apko:latest output.tar'
+          sh 'apko build nginx.yaml darinpope/jenkins-example-apko:latest output.tar'
           sh 'ls -last'
       }
     }
